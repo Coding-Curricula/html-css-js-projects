@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Example</title>
+  </head>
+  <body>
+    <h1>Products</h1>
+    <ul>
+      <li class="product" data-id="1" data-price="10.00">
+        Product 1 - $10
+        <span
+          ><button onclick="addToCart('1', 'Product 1', '10.00')">
+            Add to Cart
+          </button></span
+        >
+      </li>
+      <li class="product" data-id="2" data-price="20.00">
+        Product 2 - $20<span
+          ><button onclick="addToCart('2', 'Product 2', '20.00')">
+            Add to Cart
+          </button></span
+        >
+      </li>
+      <li class="product" data-id="3" data-price="30.00">
+        Product 3 - $30<span
+          ><button onclick="addToCart('3', 'Product 3', '30.00')">
+            Add to Cart
+          </button></span
+        >
+      </li>
+    </ul>
+
+    <h1>Cart</h1>
+    <div class="cart" id="cart"></div>
+
+    <script>
+      let cart = {};
+
+      function addToCart(id, name, price) {
+        if (cart[id]) {
+          cart[id].quantity++;
+        } else {
+          cart[id] = {
+            id,
+            name,
+            price,
+            quantity: 1,
+          };
+        }
+
+        console.log(cart);
+
+        renderCart();
+      }
+
+      function renderCart() {
+        const cartElement = document.getElementById("cart");
+        cartElement.innerHTML = "";
+
+        for (const id in cart) {
+          const item = cart[id];
+
+          const itemElement = document.createElement("div");
+          itemElement.innerHTML = `
+            <span>${item.name} - $${item.price} x ${item.quantity}</span>
+            <button onclick="removeFromCart('${item.id}')">Remove</button>
+          `;
+
+          cartElement.appendChild(itemElement);
+        }
+      }
+
+      function removeFromCart(id) {
+        if (cart[id].quantity > 1) {
+          cart[id].quantity--;
+        } else {
+          delete cart[id];
+        }
+
+        renderCart();
+      }
+    </script>
+  </body>
+</html>

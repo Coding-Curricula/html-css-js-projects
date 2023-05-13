@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f1f1f1;
+        width: 100%;
+        height: 100vh;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        margin: 100px auto;
+        width: 50%;
+        border-radius: 5px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+        box-shadow: 0 0 5px #45a049;
+      }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Planner</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Budget Planner</h1>
+      <label for="income">Monthly Income:</label>
+      <input
+        type="number"
+        id="income"
+        name="income"
+        placeholder="Enter your monthly income"
+      />
+      <br />
+      <label for="expenses">Monthly Expenses:</label>
+      <input
+        type="number"
+        id="expenses"
+        name="expenses"
+        placeholder="Enter your monthly expenses"
+      />
+
+      <br />
+      <button onclick="calculate()">Calculate</button>
+
+      <label for="balance">Monthly Balance:</label>
+      <input type="number" id="balance" name="balance" disabled />
+    </div>
+
+    <script>
+      function calculate() {
+        const income = document.getElementById("income").value;
+        const expenses = document.getElementById("expenses").value;
+        const balance = document.getElementById("balance");
+
+        balance.value = income - expenses;
+      }
+    </script>
+  </body>
+</html>
