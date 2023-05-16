@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo</title>
+  </head>
+  <body>
+    <h1>Todo List</h1>
+    <p>by Team UN</p>
+    <div>
+      <input type="text" id="todoInput" placeholder="Enter a task" />
+      <button onclick="addTodo()">Add</button>
+    </div>
+    <ul id="todoList"></ul>
+    <script>
+      const addTodo = () => {
+        let li = document.createElement("li");
+        let inputValue = document.getElementById("todoInput").value;
+        console.log("Input value:", inputValue);
+        let text = document.createTextNode(inputValue);
+        console.log("Text:", text);
+        li.appendChild(text);
+        console.log("li:", li);
+
+        let span = document.createElement("span");
+        let spanText = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(spanText);
+        li.appendChild(span);
+
+        let closeButton = document.getElementsByClassName("close");
+        console.log("closeButton:", closeButton);
+
+        Array.from(closeButton).forEach((button) => {
+          button.onclick = function () {
+            let div = this.parentElement;
+            div.style.display = "none";
+          };
+        });
+
+        // append DOM
+        document.getElementById("todoList").appendChild(li);
+        console.log("todoList:", document.getElementById("todoList"));
+      };
+    </script>
+  </body>
+</html>
